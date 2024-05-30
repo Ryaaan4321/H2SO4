@@ -1,18 +1,18 @@
 #include<bits/stdc++.h>
 #include<algorithm>
 #include<math.h>
+#include<hashtable.h>
 
 
 using namespace std;
 
+void solve(){
+    cout<<"c++ is fun bitchhh"<<endl;
+
+}
 int main(){
-    int n;
-    cin>>n;
-    vector<int>a(n);
-    for(int i=0;i<n;i++){
-        cin>>a[i];
-    }
-    for(int i=0;i<a.size();i++){
-        cout<<a[i]<<" "<<endl;
-    }
+   
+    solve();
+    return 0;
+    
 }
