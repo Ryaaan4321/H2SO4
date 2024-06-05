@@ -80,10 +80,32 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 
 */
 
+
 void galat_Karam()
 {
     int n;
     cin>>n;
+    vi a(n);
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    vi pref(n);
+    bool f=1;
+    for(int i=1;i<n;i++){
+        if(a[i]!=0  && a[i-1]>=a[i]){
+            f=0;
+            break;
+        }
+        a[i]+=a[i-1];
+    }
+   if(f){
+    for(int i=0;i<n;i++){
+        cout<<a[i]<<" "[i==n-1];
+    }
+    cout<<endl;
+   }else{
+    cout<<-1<<"\n";
+   }
 
 };
 //you gotta be almost insane to your craft - Sir mcgregor/

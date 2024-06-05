@@ -80,11 +80,31 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 
 */
 
+int fuc(vector<int>&a,int x){
+    int _l=0;
+    int _r=a.size()-1;
+    int cnt=upper_bound(a.begin(),a.end(),x)-a.begin();
+    return cnt;
+}
 void galat_Karam()
 {
-    int n;
-    cin>>n;
-
+    int n; 
+    cin >> n; 
+    vector<int> a(n); 
+    for(int i=0;i<n; i++) 
+    { 
+        cin >> a[i]; 
+    } 
+    sort(a.begin(), a.end()); 
+    int q; 
+    cin >> q; 
+    while (q--) 
+    { 
+        int x; 
+        cin >> x; 
+        int ind = fuc(a,x);
+        cout << ind << endl; 
+    }
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 
@@ -93,10 +113,10 @@ int32_t main()
     auto begin = std::chrono::high_resolution_clock::now();
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    w(t)
-    {
+    // w(t)
+    // {
     galat_Karam();
-    }
+    // }
 
     // auto end = std::chrono::high_resolution_clock::now();
     // auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
