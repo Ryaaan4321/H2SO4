@@ -27,6 +27,7 @@ template<typename Ostream, typename... Ts> Ostream &operator<<(Ostream &os, cons
 #define yes cout << "YES" << endl
 #define no cout << "NO" << endl
 #define all(a) (a).begin(), (a).end()
+#define FOR(i,n) for(int i = 0;i < n;++i)
 #define w(t)  \
     int t;    \
     cin >> t; \
@@ -81,23 +82,23 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 */
 
 bool isV(char ch){
-    return ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u';
+    return ch!='a' && ch!='e' && ch!='i' && ch!='o' && ch!='u';
 }
 void galat_Karam()
 {
-    string s;
-    cin>>s;
-    string t;
-    transform(s.begin(),s.end(),s.begin(),::tolower);
-    for(int i=0;i<s.length();i++){
-        if(isV(s[i]))
-            continue;
-        else{
-            t+='.';
-            t+=s[i];
-        }
+    string str;
+    cin>>str;
+    string res;
+    for(int i=0;i<str.size();i++){
+        transform(str.begin(),str.end(),str.begin(),::tolower);
+        if(str[i]!='a' && str[i]!='o' && str[i]!='u' && str[i]!='y'
+			&& str[i]!='i' && str[i]!='e')
+        {
+			res += '.';
+			res += str[i];
+		}
     }
-    cout<<t<<endl;
+	cout << res;
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 
