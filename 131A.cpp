@@ -80,31 +80,36 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 
 */
 
-int fuc(vector<int>&a,int x){
-    int _l=0;
-    int _r=a.size()-1;
-    int cnt=upper_bound(a.begin(),a.end(),x)-a.begin();
-    return cnt;
-}
+
 void galat_Karam()
 {
-    int n; 
-    cin >> n; 
-    vector<int> a(n); 
-    for(int i=0;i<n; i++) 
-    { 
-        cin >> a[i]; 
-    } 
-    sort(a.begin(), a.end()); 
-    int q; 
-    cin >> q; 
-    while (q--) 
-    { 
-        int x; 
-        cin >> x; 
-        int ind = fuc(a,x);
-        cout << ind << endl; 
+    string s;
+    char u;
+    bool c = true;
+    cin >> s;
+
+    for(int i = 1; i < s.length(); i++)
+    {
+        if(islower(s[i]))
+        {
+            c = false;
+        }
     }
+
+    if(c == true)
+    {
+        for(int j = 0; j < s.length(); j++)
+        {
+            if(islower(s[j]))
+                u = toupper(s[j]);
+            else
+                u = tolower(s[j]);
+            cout << u;
+        }
+    }
+    else
+        cout << s;
+   
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 
