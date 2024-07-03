@@ -102,7 +102,7 @@ template <class T> void _print(vector <T> v) {cerr << "[ "; for (T i : v) {_prin
 template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
 template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
-//time se badi koi investment ni phir fark ni padta ki pesha ky hai/
+
 
 
 
@@ -169,5 +169,5 @@ int32_t main()
     // auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
     // cerr << "is it enough bitchh..?  " << elapsed.count() * 1e-9 << " seconds.\n";
     return 0;
-    //mene time lagya koi na bola mujhe  laga reh to mene khud ko bola bas tu apna saga reh ar laga reh/
+    
 }
