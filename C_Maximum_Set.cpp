@@ -92,8 +92,9 @@ inline ll nC2(ll n) { return (n * (n - 1)) / 2; }
 inline ll binary_exp(ll a, ll b) { ll ans = 1; while (b) { if (b & 1) ans = ans * a % mod; a = a * a % mod; b >>= 1; } return ans; }
 
 mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
-
 //time se badi koi investment ni phir fark ni padta ki pesha ky hai/
+
+
 
 /*
 ----------------------------------------------- THINGS TO REMEMBER ----------------------------------------------------------------
@@ -115,30 +116,9 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 
 void galat_Karam()
 {
-    string s;cin>>s;
-    int k;cin>>k;
-    vector<array<int,2>>va;
-    int n=s.length();
-    for(int i=0;i<s.length();i++){
-        va.push_back({s[i]-'a'+1,i});
-    }
-    debug(va);
-    sort(va.begin(),va.end());
-    debug(va.front()[0]);
-    int sm=0;
-    for (auto &i : s) sm += (i - 'a' + 1);
-    while (sm > k) {
-		sm -= va.back()[0];
-		s[va.back()[1]] = '.';
-		va.pop_back();
-	}
-    // debug(s);
-    for(int i=0;i<n;i++){
-        if(s[i]!='.'){
-           cout<<s[i];
-        }
-    }
-    cout<<endl;
+ int l;cin>>l;
+ int r;cin>>r;
+   
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 
@@ -158,5 +138,3 @@ int32_t main()
     return 0;
     //mene time lagya koi na bola mujhe  laga reh to mene khud ko bola bas tu apna saga reh ar laga reh/
 }
-
-
