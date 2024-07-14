@@ -122,23 +122,26 @@ If a is divisible by b, the result is 0.
 If a is not divisible by b, the result is the remainder when a is divided by b.
 
 */
-
-vector<int>f1(26,0);
-vector<int>f2(26,0);
 void galat_Karam()
 {
-    string s1;
-    string s2;
-    cin>>s1;
-    cin>>s2;
-    for(int i=0;i<s1.length();i++){
-        f1[s1[i]-'a']++;
+    int n;cin>>n;
+    string s;cin>>s;
+    vector<int>fq(n);
+    set<char>st;
+    for(int i=0;i<s.length();i++){
+        st.insert(s[i]);
+        fq[i]=st.size();
+        debug(st,fq);
     }
-    debug(f1);
-    for(int i=0;i<s2.length();i++){
-        f2[s2[i]-'a']++;
+    st.clear();
+    debug(st);
+    int ans=1;
+    for(int i=n-1;i>=1;i--){
+        st.insert(s[i]);
+        ans=max(ans,(int)st.size()+fq[i-1]);
     }
-    debug(f2);
+    cout<<ans<<'\n';
+   
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 
@@ -147,10 +150,10 @@ int32_t main()
     auto begin = std::chrono::high_resolution_clock::now();
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    // w(t)
-    // {
+    w(t)
+    {
     galat_Karam();
-    // }
+    }
 
     // auto end = std::chrono::high_resolution_clock::now();
     // auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);

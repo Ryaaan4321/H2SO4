@@ -123,22 +123,39 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 
 */
 
-vector<int>f1(26,0);
-vector<int>f2(26,0);
+int dig(int n){
+    if(n==0){
+        return 1;
+    }
+    int c=0;
+    while (n!=0)
+    {
+        n/=10;
+        c++;
+    }
+    return c;
+}
 void galat_Karam()
 {
-    string s1;
-    string s2;
-    cin>>s1;
-    cin>>s2;
-    for(int i=0;i<s1.length();i++){
-        f1[s1[i]-'a']++;
-    }
-    debug(f1);
-    for(int i=0;i<s2.length();i++){
-        f2[s2[i]-'a']++;
-    }
-    debug(f2);
+ int n;cin>>n;
+ if(n==1){
+    cout<<0<<endl;
+    return;
+ } 
+ string s=to_string(n);
+ if(s.length()==1){
+    cout<<stoi(s)-1<<endl;
+    return;
+ }
+ int len=s.length();
+ debug(len);
+ int cnt_dig=dig(stoi(s));
+ string new_str="1";
+ for(int i=1;i<=cnt_dig-1;i++){
+    new_str+='0';
+ }
+ cout<<abs(stoi(s)-stoi(new_str))<<endl;
+
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 
@@ -147,10 +164,10 @@ int32_t main()
     auto begin = std::chrono::high_resolution_clock::now();
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    // w(t)
-    // {
+    w(t)
+    {
     galat_Karam();
-    // }
+    }
 
     // auto end = std::chrono::high_resolution_clock::now();
     // auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
@@ -158,3 +175,4 @@ int32_t main()
     return 0;
     //mene time lagya koi na bola mujhe  laga reh to mene khud ko bola bas tu apna saga reh ar laga reh/
 }
+

@@ -123,22 +123,27 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 
 */
 
-vector<int>f1(26,0);
-vector<int>f2(26,0);
+string rotate(string s,int k){
+    int n=s.size();
+    k=k%n;
+    string ss="";
+    for(int i=0;i<n;i++){
+        int id=(i+k)%n;
+        ss+=s[id];
+    }
+    return ss;
+}
 void galat_Karam()
 {
-    string s1;
-    string s2;
-    cin>>s1;
-    cin>>s2;
-    for(int i=0;i<s1.length();i++){
-        f1[s1[i]-'a']++;
-    }
-    debug(f1);
-    for(int i=0;i<s2.length();i++){
-        f2[s2[i]-'a']++;
-    }
-    debug(f2);
+   string s;cin>>s;
+   string t;cin>>t;
+   reverse(s.begin(),s.end());
+   debug(s);
+   if(s==t){
+    yes;
+   }else{
+    no;
+   }
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 

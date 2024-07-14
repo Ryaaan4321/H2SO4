@@ -93,18 +93,7 @@ inline ll binary_exp(ll a, ll b) { ll ans = 1; while (b) { if (b & 1) ans = ans 
 
 mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
 
-template<class T> void _print(T t){ cerr << t;}
-template<typename T> inline auto sqr (T x) -> decltype(x * x) {return x * x;}
-template<typename T1, typename T2> inline bool umx (T1& a, T2 b) {if (a < b) {a = b; return 1;} return 0;}
-template<typename T1, typename T2> inline bool umn (T1& a, T2 b) {if (b < a) {a = b; return 1;} return 0;}
-template <class T, class V> void _print(pair <T, V> p) {cerr << "{"; _print(p.fi); cerr << ","; _print(p.se); cerr << "}";}
-template <class T> void _print(vector <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
-template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
-template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
-template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
 //time se badi koi investment ni phir fark ni padta ki pesha ky hai/
-
-
 
 /*
 ----------------------------------------------- THINGS TO REMEMBER ----------------------------------------------------------------
@@ -123,22 +112,33 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 
 */
 
-vector<int>f1(26,0);
-vector<int>f2(26,0);
+
 void galat_Karam()
 {
-    string s1;
-    string s2;
-    cin>>s1;
-    cin>>s2;
-    for(int i=0;i<s1.length();i++){
-        f1[s1[i]-'a']++;
+    string s;cin>>s;
+    int k;cin>>k;
+    vector<array<int,2>>va;
+    int n=s.length();
+    for(int i=0;i<s.length();i++){
+        va.push_back({s[i]-'a'+1,i});
     }
-    debug(f1);
-    for(int i=0;i<s2.length();i++){
-        f2[s2[i]-'a']++;
+    debug(va);
+    sort(va.begin(),va.end());
+    debug(va.front()[0]);
+    int sm=0;
+    for (auto &i : s) sm += (i - 'a' + 1);
+    while (sm > k) {
+		sm -= va.back()[0];
+		s[va.back()[1]] = '.';
+		va.pop_back();
+	}
+    debug(s);
+    for(int i=0;i<n-1;i++){
+        if(s[i]!='.'){
+           cout<<s[i];
+        }
     }
-    debug(f2);
+    cout<<endl;
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 
@@ -147,10 +147,10 @@ int32_t main()
     auto begin = std::chrono::high_resolution_clock::now();
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    // w(t)
-    // {
+    w(t)
+    {
     galat_Karam();
-    // }
+    }
 
     // auto end = std::chrono::high_resolution_clock::now();
     // auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
@@ -158,3 +158,5 @@ int32_t main()
     return 0;
     //mene time lagya koi na bola mujhe  laga reh to mene khud ko bola bas tu apna saga reh ar laga reh/
 }
+
+

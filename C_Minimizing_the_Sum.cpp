@@ -122,23 +122,47 @@ If a is divisible by b, the result is 0.
 If a is not divisible by b, the result is the remainder when a is divided by b.
 
 */
-
-vector<int>f1(26,0);
-vector<int>f2(26,0);
+#define nl '\n';
+int dp[10000+5];
+int fucc(int i,vector<int>a,int k){
+    auto comp=[&](int a,int b,int c)->int{
+        return min(a,min(b,c));
+    };
+    if(a.size()==1){
+        return a[0];
+    }
+    if(i==a.size())
+        return 1;
+    if(dp[i]!=-1){
+        return dp[i];
+    }  
+    auto sm=[&](vector<int>&a)->int{
+        return std::accumulate(a.begin(),a.end(),0);
+    };  
+    int t=0;
+    int n_t=0;
+    if(i-1>0 && i+1<=a.size()){
+        int a_=a[i-1];
+        int v=a[i];
+        int b_=a[i+1];
+        int mn=comp(a_,v,b_);
+        swap(a[i],mn);
+        t+=fucc(i+1,a,k);
+    }else if(i-1>0 && i+1<a.size()){
+        n_t=fucc(i+1,a,k);
+    }
+    return dp[i]=min(t,n_t); 
+}
 void galat_Karam()
 {
-    string s1;
-    string s2;
-    cin>>s1;
-    cin>>s2;
-    for(int i=0;i<s1.length();i++){
-        f1[s1[i]-'a']++;
+    int n,k;
+    cin>>n>>k;
+    vi a(n);
+    for(int i=0;i<n;i++){
+        cin>>a[i];
     }
-    debug(f1);
-    for(int i=0;i<s2.length();i++){
-        f2[s2[i]-'a']++;
-    }
-    debug(f2);
+    int ans=fucc(0,a,k);
+    cout<<ans<<endl;
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 
@@ -147,10 +171,10 @@ int32_t main()
     auto begin = std::chrono::high_resolution_clock::now();
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    // w(t)
-    // {
+    w(t)
+    {
     galat_Karam();
-    // }
+    }
 
     // auto end = std::chrono::high_resolution_clock::now();
     // auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);

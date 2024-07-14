@@ -123,22 +123,23 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 
 */
 
-vector<int>f1(26,0);
-vector<int>f2(26,0);
+
 void galat_Karam()
 {
-    string s1;
-    string s2;
-    cin>>s1;
-    cin>>s2;
-    for(int i=0;i<s1.length();i++){
-        f1[s1[i]-'a']++;
+   int n;int k;
+   cin>>n;cin>>k;
+   vi a(n);
+   for(int i=0;i<n;i++){
+    cin>>a[i];
+   }
+   int b=a[k];
+   int s=0;
+   for(int i=1;i<=n;i++){
+    if(a[i]>=b  && a[i]>0){
+    s++;
     }
-    debug(f1);
-    for(int i=0;i<s2.length();i++){
-        f2[s2[i]-'a']++;
-    }
-    debug(f2);
+   }
+   cout<<s<<'\n';
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 
