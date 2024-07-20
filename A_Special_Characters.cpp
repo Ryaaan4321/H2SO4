@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <vector>
 #include <algorithm> 
@@ -117,18 +118,15 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 void galat_Karam()
 {
  int n;cin>>n;
- string s;cin>>s;
- string ans="";
- int c=1;
- for(int i=1;i<n;i++){
-    if(s[i]=='1'){
-        cout<<(c?'-':'+'),c^=1;
-    }else{
-        cout<<'+';
+ if(n%2==1){
+    no;
+ }else{
+    yes;
+    for(int i=0;i<n/2;i++){
+        cout<<(i%2==0?"AA":"BB");
     }
+    cout<<'\n';
  }
- cout<<'\n';
- 
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 

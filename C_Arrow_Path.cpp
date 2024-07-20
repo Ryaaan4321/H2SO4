@@ -114,22 +114,57 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 */
 
 
-void galat_Karam()
-{
- int n;cin>>n;
- string s;cin>>s;
- string ans="";
- int c=1;
- for(int i=1;i<n;i++){
-    if(s[i]=='1'){
-        cout<<(c?'-':'+'),c^=1;
-    }else{
-        cout<<'+';
+const int dr[4] = {-1, 0, 1, 0};
+const int dc[4] = {0, -1, 0, 1};
+
+void galat_Karam() {
+    int n;
+    cin >> n;
+    vector<vector<char>> grid(2, vector<char>(n));
+    for (int i = 0; i < 2; ++i) {
+        for (int j = 0; j < n; ++j) {
+            cin >> grid[i][j];
+        }
     }
- }
- cout<<'\n';
- 
-};
+    vector<vector<bool>> vis(2, vector<bool>(n));
+    vis[0][0] = true;
+    queue<pair<int, int>> q;
+    q.push({0, 0});
+    
+    auto isvalid = [&](int i, int j) -> bool {
+        return (i >= 0) && (i < 2) && (j >= 0) && (j < n);
+    };
+    
+    while (!q.empty()) {
+        auto node = q.front();
+        q.pop();
+        int r = node.first;
+        int c = node.second;
+        
+        for (int k = 0; k < 4; ++k) {
+            int nr = r + dr[k];
+            int nc = c + dc[k];
+            if (!isvalid(nr, nc)) {
+                continue;
+            }
+            if (grid[nr][nc] == '<') {
+                nc--;
+            } else if (grid[nr][nc] == '>') {
+                nc++;
+            }
+            if (!isvalid(nr, nc)) {
+                continue;
+            }
+            if (vis[nr][nc]) {
+                continue;
+            }
+            vis[nr][nc] = true;
+            q.emplace(nr, nc);
+        }
+    }
+    
+    cout << (vis[1][n - 1] ? "YES\n" : "NO\n");
+}
 //you gotta be almost insane to your craft - Sir mcgregor/
 
 int32_t main()

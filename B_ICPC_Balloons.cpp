@@ -113,22 +113,22 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 
 */
 
-
 void galat_Karam()
 {
  int n;cin>>n;
- string s;cin>>s;
- string ans="";
- int c=1;
- for(int i=1;i<n;i++){
-    if(s[i]=='1'){
-        cout<<(c?'-':'+'),c^=1;
+ string s;cin>>s;  
+ vector<bool>pos(26);
+ int c=0;
+ for(int i=0;i<n;i++){
+    if(!pos[s[i]-'A']){
+        c+=2;
+        pos[s[i]-'A']=1;
     }else{
-        cout<<'+';
+        c++;
     }
  }
- cout<<'\n';
- 
+ cout<<c<<endl;
+ debug(pos);
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 
