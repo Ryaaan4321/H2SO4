@@ -116,35 +116,35 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 
 void galat_Karam()
 {
-   int n;cin>>n;
-   string s;cin>>s;
-   int cnt=0;
-   for(int i=0;i<n;i++){
-    if(s[i]=='('){
-        cnt++;
-    }else if(s[i]==')'){
-        cnt--;
-    }else{ // when we have a empty space 
-        if(cnt>1){// if the cnt >0 that means we have seen the  the open brakcet before so just add the closing bracket on that  empty place and decrease the cnt;
-            s[i]=')';
-            cnt--;
-        }else{// and if we have a empty space and the cnt=0;than place the openning bracket on that place and increase the cnt by 1
-            cnt=1;
-            s[i]='(';
-        }
+  int n;
+  std::cin>>n;
+  vector<int>adj[n];
+  vector<int>a(n);
+  for(auto &it:a){
+    cin>>it;
+  }
+  for(int i=1;i<n;i++){
+    int p;cin>>p;p--;
+    adj[p].push_back(i);
+  }
+  function<ll(int node)> dfs=[&](int node)->ll{
+    ll mini=1e9;
+    for(auto it:adj[node]){
+      mini=min(mini,dfs(it));
     }
-   }
-   stack<int>st;
-   for(int  i=0;i<n;i++){
-    if(s[i]=='('){
-        st.push(i);
+    if(node==0){
+      return mini+a[0];
+    }
+    if(mini==1e9){
+      return a[node];
+    }
+    if(a[node]>=mini){
+      return mini;
     }else{
-        cnt+=i-st.top();
-        st.pop();
+      return (mini+a[node])/2;
     }
-   }
-   cout<<cnt<<endl;
-
+  };
+  cout<<dfs(0)<<'\n';
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 

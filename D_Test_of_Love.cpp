@@ -70,6 +70,8 @@ namespace __DEBUG_UTIL__ {
 #define yes cout << "YES" << endl
 #define no cout << "NO" << endl
 #define all(a) (a).begin(), (a).end()
+#define INF (int)1e18
+#define int long long
 #define w(t)  \
     int t;    \
     cin >> t; \
@@ -116,35 +118,38 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 
 void galat_Karam()
 {
-   int n;cin>>n;
-   string s;cin>>s;
-   int cnt=0;
-   for(int i=0;i<n;i++){
-    if(s[i]=='('){
-        cnt++;
-    }else if(s[i]==')'){
-        cnt--;
-    }else{ // when we have a empty space 
-        if(cnt>1){// if the cnt >0 that means we have seen the  the open brakcet before so just add the closing bracket on that  empty place and decrease the cnt;
-            s[i]=')';
-            cnt--;
-        }else{// and if we have a empty space and the cnt=0;than place the openning bracket on that place and increase the cnt by 1
-            cnt=1;
-            s[i]='(';
+   int n, m, k; cin >> n >> m >> k;
+    string s; cin >> s;
+    
+    n++;
+    
+    s = "0" + s;
+    s = s + "L";
+    
+    vector <int> dp(n + 1, INF);
+    dp[0] = 0;
+    int swim = INF;
+    
+    for (int i = 1; i <= n; i++){
+        if (s[i] == 'L'){
+            dp[i] = swim;
+            for (int j = max(0LL, i - m); j < i; j++){
+                dp[i] = min(dp[i], dp[j]);
+            }
+        } else if (s[i] == 'C'){
+            swim = INF;
+        } else {
+            for (int j = max(0LL, i - m); j < i; j++){
+                swim = min(swim, dp[j]);
+            }
+            swim = swim + 1;
         }
+        
+      //  cout << dp[i] << " \n"[i == n];
     }
-   }
-   stack<int>st;
-   for(int  i=0;i<n;i++){
-    if(s[i]=='('){
-        st.push(i);
-    }else{
-        cnt+=i-st.top();
-        st.pop();
-    }
-   }
-   cout<<cnt<<endl;
-
+    
+    if (dp[n] <= k) cout << "YES\n";
+    else cout << "NO\n";
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 

@@ -114,38 +114,37 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 */
 
 
-void galat_Karam()
-{
-   int n;cin>>n;
-   string s;cin>>s;
-   int cnt=0;
-   for(int i=0;i<n;i++){
-    if(s[i]=='('){
-        cnt++;
-    }else if(s[i]==')'){
-        cnt--;
-    }else{ // when we have a empty space 
-        if(cnt>1){// if the cnt >0 that means we have seen the  the open brakcet before so just add the closing bracket on that  empty place and decrease the cnt;
-            s[i]=')';
-            cnt--;
-        }else{// and if we have a empty space and the cnt=0;than place the openning bracket on that place and increase the cnt by 1
-            cnt=1;
-            s[i]='(';
-        }
+void galat_Karam(){
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for (int& x: a) cin >> x;
+    int odds = 0;
+    for (int& x: a) odds += x % 2;
+    if (odds == 0 || odds == n) {
+      cout << "0\n";
+      return;
     }
-   }
-   stack<int>st;
-   for(int  i=0;i<n;i++){
-    if(s[i]=='('){
-        st.push(i);
-    }else{
-        cnt+=i-st.top();
-        st.pop();
+    int max_odd = 0;
+    for (int& x: a) {
+      if (x%2 == 1) max_odd = max(max_odd, x);
     }
-   }
-   cout<<cnt<<endl;
-
-};
+    vector<int> evens;
+    for (int& x: a) {
+      if (x%2 == 0) evens.push_back(x);
+    }
+    sort(evens.begin(), evens.end());
+    bool fail = 0;
+    for (int x: evens) {
+      if (x > max_odd) {
+        fail = 1;
+        break;
+      }
+      max_odd += x;
+      if (max_odd > evens.back()) break;
+    }
+    cout << (n-odds)+fail << '\n';
+}
 //you gotta be almost insane to your craft - Sir mcgregor/
 
 int32_t main()

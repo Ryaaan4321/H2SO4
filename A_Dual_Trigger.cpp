@@ -119,32 +119,18 @@ void galat_Karam()
    int n;cin>>n;
    string s;cin>>s;
    int cnt=0;
+   int mx=-1;
+   int mi=n;
    for(int i=0;i<n;i++){
-    if(s[i]=='('){
+    if(s[i]=='1'){
         cnt++;
-    }else if(s[i]==')'){
-        cnt--;
-    }else{ // when we have a empty space 
-        if(cnt>1){// if the cnt >0 that means we have seen the  the open brakcet before so just add the closing bracket on that  empty place and decrease the cnt;
-            s[i]=')';
-            cnt--;
-        }else{// and if we have a empty space and the cnt=0;than place the openning bracket on that place and increase the cnt by 1
-            cnt=1;
-            s[i]='(';
-        }
+        mi=min(mi,i);
+        mx=max(mx,i);
+        debug(mi);
+        debug(mx);
     }
-   }
-   stack<int>st;
-   for(int  i=0;i<n;i++){
-    if(s[i]=='('){
-        st.push(i);
-    }else{
-        cnt+=i-st.top();
-        st.pop();
     }
-   }
-   cout<<cnt<<endl;
-
+   cout << (cnt % 2 == 1 || (cnt == 2 && mx - mi == 1) ? "NO\n" : "YES\n");
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 

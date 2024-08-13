@@ -117,34 +117,23 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 void galat_Karam()
 {
    int n;cin>>n;
+   int k;cin>>k;
    string s;cin>>s;
-   int cnt=0;
-   for(int i=0;i<n;i++){
-    if(s[i]=='('){
-        cnt++;
-    }else if(s[i]==')'){
-        cnt--;
-    }else{ // when we have a empty space 
-        if(cnt>1){// if the cnt >0 that means we have seen the  the open brakcet before so just add the closing bracket on that  empty place and decrease the cnt;
-            s[i]=')';
-            cnt--;
-        }else{// and if we have a empty space and the cnt=0;than place the openning bracket on that place and increase the cnt by 1
-            cnt=1;
-            s[i]='(';
-        }
+   bool f=1;
+   if(k*2+1>n){
+    no;
+    return;
+   }
+   for(int i=0;i<k-1;i++){
+    if(s[i]!=s[n-i-1]){
+        f=0;
     }
    }
-   stack<int>st;
-   for(int  i=0;i<n;i++){
-    if(s[i]=='('){
-        st.push(i);
-    }else{
-        cnt+=i-st.top();
-        st.pop();
-    }
+   if(f){
+    yes;
+   }else{
+    no;
    }
-   cout<<cnt<<endl;
-
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 
