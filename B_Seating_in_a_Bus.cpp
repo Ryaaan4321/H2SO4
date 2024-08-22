@@ -116,25 +116,26 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 
 void galat_Karam()
 {
-   int n;cin>>n;
-   int k;cin>>k;
-   string s;cin>>s;
+   int n;std::cin>>n;
    bool f=1;
-   if(k*2+1>n){
-    no;
-    return;
-   }
-   for(int i=0;i<=k-1;i++){
-    if(s[i]!=s[n-i-1]){
-        f=0;
-        break;
+   vector<bool> a(n);
+   for(int i=0;i<n;i++){
+    int x;cin>>x;
+    x--; 
+    if(i>0){
+        if((x==0 || a[x-1]==0) && (x==n-1 || a[x+1]==0)){
+            f=0;
+        }
     }
+    a[x]=1;
+    debug(a);
    }
    if(f){
     yes;
    }else{
     no;
    }
+   
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 

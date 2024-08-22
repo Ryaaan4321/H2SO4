@@ -117,24 +117,12 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 void galat_Karam()
 {
    int n;cin>>n;
-   int k;cin>>k;
-   string s;cin>>s;
-   bool f=1;
-   if(k*2+1>n){
-    no;
-    return;
+   pair<int,int>p[2*n];
+   for(int i=0;i<n;i++){
+    cin>>p[i].first;
+    cin>>p[i].second;
    }
-   for(int i=0;i<=k-1;i++){
-    if(s[i]!=s[n-i-1]){
-        f=0;
-        break;
-    }
-   }
-   if(f){
-    yes;
-   }else{
-    no;
-   }
+   
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 

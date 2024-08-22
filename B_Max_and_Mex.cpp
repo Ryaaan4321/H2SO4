@@ -113,28 +113,54 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 
 */
 
-
+ll mex(vl a ,int n){
+    for(int i=0;i<n;i++){
+        if(a[i]!=i){
+            return i;
+        }
+    }
+    return n;
+}
+ll mx(vl a){
+   ll x=0;
+   for(auto &it:a){
+    x=max(x,it);
+   }
+   return x;
+}
+bool check(vl a,ll x,ll n){
+    for(int i=0;i<(int)a.size();i++){
+        if(a[i]==x){
+            return 1;
+        }
+    }
+    return 0;
+}
 void galat_Karam()
 {
-   int n;cin>>n;
-   int k;cin>>k;
-   string s;cin>>s;
-   bool f=1;
-   if(k*2+1>n){
-    no;
-    return;
-   }
-   for(int i=0;i<=k-1;i++){
-    if(s[i]!=s[n-i-1]){
-        f=0;
-        break;
+  ll n;cin>>n;
+  ll k;cin>>k;
+  bool f=1;
+  vl a(n);for(int i=0;i<n;i++)cin>>a[i];
+  sort(a.begin(),a.end());
+  for(int i=0;i<n;i++){
+    if(i!=a[i]){
+      f=0;
     }
-   }
-   if(f){
-    yes;
-   }else{
-    no;
-   }
+  }   
+  if(f){
+    cout<<(n+k)<<endl;
+  }else{
+    ll x=n,y=mex(a,n),z=mx(a);
+    // if(check(a,(ll)ceil(y+z)/2.0) || k==0){
+    //     cout<<x<<'\n';
+    // } 
+    if(check(a,(ll)ceil((y+z)/2.0),n) || k==0)
+        cout<<x<<'\n';
+    else{
+        cout<<x+1<<endl;
+    }
+  }
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 

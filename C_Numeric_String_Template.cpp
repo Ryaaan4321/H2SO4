@@ -114,43 +114,68 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 */
 
 
-void galat_Karam()
-{
-   int n;cin>>n;
-   int k;cin>>k;
-   string s;cin>>s;
-   bool f=1;
-   if(k*2+1>n){
-    no;
-    return;
-   }
-   for(int i=0;i<=k-1;i++){
-    if(s[i]!=s[n-i-1]){
-        f=0;
-        break;
+void solve() {
+    int n;
+    std::cin >> n;
+    
+    std::vector<int> a(n);
+    for (int i = 0; i < n; i++) {
+        std::cin >> a[i];
     }
-   }
-   if(f){
-    yes;
-   }else{
-    no;
-   }
-};
-//you gotta be almost insane to your craft - Sir mcgregor/
-
-int32_t main()
-{
-    auto begin = std::chrono::high_resolution_clock::now();
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    w(t)
-    {
-    galat_Karam();
+    
+    std::map<int, int> f;
+    for (int i = 0; i < n; i++) {
+        int x;
+        if (f.find(a[i])!=f.end()) {
+            x = f[a[i]];
+        } else {
+            x = -1;
+        }
+        f[a[i]] = i;
+        a[i] = x;
     }
 
-    // auto end = std::chrono::high_resolution_clock::now();
-    // auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
-    // cerr << "is it enough bitchh..?  " << elapsed.count() * 1e-9 << " seconds.\n";
+    auto check = [&](const auto &s) {
+        if (s.size() != n) {
+            return false;
+        }
+        std::vector<int> b(n);
+        std::array<int, 26> f;
+        f.fill(-1);
+        for (int i = 0; i < n; i++) {
+            b[i] = f[s[i] - 'a'];
+            f[s[i] - 'a'] = i;
+        }
+        debug(b);
+        debug(f);
+        return a == b;
+    };
+    
+    int m;
+    std::cin >> m;
+    
+    for (int i = 0; i < m; i++) {
+        std::string s;
+        std::cin >> s;
+        
+        if (check(s)) {
+            std::cout << "YES\n";
+        } else {
+            std::cout << "NO\n";
+        }
+    }
+}
+
+int main() {
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    
+    int t;
+    std::cin >> t;
+    
+    while (t--) {
+        solve();
+    }
+    
     return 0;
-    //mene time lagya koi na bola mujhe  laga reh to mene khud ko bola bas tu apna saga reh ar laga reh/
 }

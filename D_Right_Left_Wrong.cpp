@@ -116,25 +116,28 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 
 void galat_Karam()
 {
-   int n;cin>>n;
-   int k;cin>>k;
-   string s;cin>>s;
-   bool f=1;
-   if(k*2+1>n){
-    no;
-    return;
-   }
-   for(int i=0;i<=k-1;i++){
-    if(s[i]!=s[n-i-1]){
-        f=0;
-        break;
+ int n;cin>>n;
+ vl a(n + 1, 0);
+ vl pref(n + 1, 0);
+ for(int i=1;i<=n;i++){
+    cin>>a[i];
+    pref[i]=pref[i-1]+a[i];
+ }
+ debug(pref);
+ string s;cin>>s;
+ int l=1;int hi=n;ll ans=0;
+ while(l<=hi){
+    if(s[l-1]=='L' && s[hi-1]=='R'){
+        ans+=pref[hi]-pref[l-1];
+        l++;hi--;
+    }else if(s[l-1]=='R'){
+        l++;
+    }else if(s[hi-1]=='L'){
+        hi--;
     }
-   }
-   if(f){
-    yes;
-   }else{
-    no;
-   }
+ }
+ cout<<ans<<endl;
+    
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 
