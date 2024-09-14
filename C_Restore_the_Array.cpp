@@ -114,20 +114,23 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 
 */
 
-
-void galat_Karam()
-{
-   int n;cin>>n;
-   vector<int>a(n);
-   for(int i=0;i<n;i++){
-    cin>>a[i];
-   }
-   vector<int>b(n);
-   for(int i=0;i<n;i++){
-    cin>>b[i];
-   }
-   debug(a);debug(b);
-};
+void galat_Karam(){
+    int n;cin>>n;
+    vector<int>b(n-1);
+    for(int i=0;i<n-1;i++){
+        cin>>b[i];
+    }
+    vector<int>a;
+    a.emplace_back(b[0]);
+    for(int i=0;i<n-2;i++){
+        a.emplace_back(min(b[i],b[i+1]));
+    }
+    a.emplace_back(b[n-2]);
+    for(auto &i:a){
+        cout<<i<<' ';
+    }
+    cout<<endl;
+}
 //you gotta be almost insane to your craft - Sir mcgregor/
 
 int32_t main()

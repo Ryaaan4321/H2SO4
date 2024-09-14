@@ -118,19 +118,22 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 void galat_Karam()
 {
    int n;cin>>n;
-   vector<int>a(n);
+   int m;cin>>m;
    for(int i=0;i<n;i++){
-    cin>>a[i];
+    for(int j=0;j<m;j++){
+        if(!(i&1)){
+            cout<<(n/2+i/2)*m+j+1<<' ';
+        }else{
+            cout<<(i/2)*m+j+1<<' ';
+        }
+    }
+    cout<<'\n';
    }
-   vector<int>b(n);
-   for(int i=0;i<n;i++){
-    cin>>b[i];
-   }
-   debug(a);debug(b);
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 
 int32_t main()
+
 {
     auto begin = std::chrono::high_resolution_clock::now();
     ios_base::sync_with_stdio(0);

@@ -114,19 +114,41 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 
 */
 
-
+void galat_Karam2(){
+    int n;cin>>n;
+    vector<int>a(n+1);
+    for(int i=1;i<=n;i++){
+        cin>>a[i];
+    }
+    vector<int>dp(n+1,0);
+    int ans=(int)-1e18;
+    for(int i=1;i<=n;i++){
+        dp[i]=a[i];
+        if(abs(a[i]%2)!=abs(a[i-1]%2)){
+            dp[i]=max(dp[i],dp[i-1]+a[i]);
+        }
+        ans=max(ans,dp[i]);
+    }
+    debug(dp);
+    cout<<ans<<endl;
+}
 void galat_Karam()
 {
-   int n;cin>>n;
-   vector<int>a(n);
-   for(int i=0;i<n;i++){
+ int n;cin>>n;
+ vector<int>a(n);
+ for(int i=0;i<n;i++){
     cin>>a[i];
-   }
-   vector<int>b(n);
-   for(int i=0;i<n;i++){
-    cin>>b[i];
-   }
-   debug(a);debug(b);
+ }  
+ long long ans=a[0];
+ long long sum=max(a[0],0);
+ for(int i=1;i<n;i++){
+    if((a[i]-a[i-1])%2==0 || sum<0){
+        sum=0;
+    }
+    sum+=a[i];
+    ans=max(ans,sum);
+ }
+ cout<<ans<<endl;
 };
 //you gotta be almost insane to your craft - Sir mcgregor/
 
